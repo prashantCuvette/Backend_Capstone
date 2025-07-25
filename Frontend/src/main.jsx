@@ -10,6 +10,14 @@ createRoot(document.getElementById("root")).render(
     <Routes>
       <Route path="/login" element={<LoginForm />} />
       <Route path="/signup" element={<SignupForm />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   </Router>
 );
