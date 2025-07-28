@@ -15,6 +15,9 @@ app.use(express.json());
 import authRoutes from "./routes/auth.routes.js";
 app.use("/api/auth", authRoutes);
 
+import memoryRoutes from "./routes/memory.routes.js";
+app.use("/api/memories", memoryRoutes);
+
 
 
 app.listen(process.env.PORT, () => {
