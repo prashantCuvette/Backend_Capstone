@@ -6,11 +6,13 @@ dotenv.config();
 const app = express();
 connectDB();
 
-// app.use("/", (req, res) => {
-//     res.send("Hello World from Express!");
-// })
+// test route
+app.get("/", (req, res) => {
+    res.send("Hello World from Express!");
+})
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 import authRoutes from "./routes/auth.routes.js";
 app.use("/api/auth", authRoutes);
