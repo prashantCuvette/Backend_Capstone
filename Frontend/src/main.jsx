@@ -1,23 +1,27 @@
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginForm from "./components/LoginForm.jsx";
-import SignupForm from "./components/SignupForm.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import App from "./App.jsx";
+import ProtectedRoute from "./pages/ProtectedRoute.jsx";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
+import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <Router>
-    <Routes>
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/signup" element={<SignupForm />} />
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <App />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   </Router>
 );
