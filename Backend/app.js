@@ -12,7 +12,7 @@ connectDB();
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
     credentials: true
 }));
 
@@ -34,9 +34,12 @@ app.use("/api/memories", memoryRoutes);
 
 
 
-app.listen(process.env.PORT, () => {
-    console.log("Server Running on Port 3000")
-})
+// app.listen(process.env.PORT, () => {
+//     console.log("Server Running on Port 3000")
+// })
+
+import serverless from 'serverless-http';
+export const handler = serverless(app);
 
 
 

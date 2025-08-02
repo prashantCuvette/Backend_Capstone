@@ -51,9 +51,51 @@ const Layout = () => {
     fetchMemories(currentPage);
   }, [currentPage]);
 
-  const handlePageClick = (page) => {};
+  const handlePageClick = (page) => {
+    if (page < 1 || page > totalPages) return; // Prevent invalid page clicks
 
-  const handleAddMemory = async (newMemory) => {};
+    fetchMemories(page);
+  };
+
+  const handleAddMemory = async (newMemory) => {
+    const token = localStorage.getItem("token");
+    try {
+
+      if(!newMemory.image || !newMemory.title || !newMemory.description) {
+        console.log("Title and description are required");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", newMemory.image);
+      formData.append("title", newMemory.title);
+      formData.append("description", newMemory.description);
+
+      const response = await fetch(`http://localhost:3000/api/memories`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error creating memory:", errorData.message);
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      // setMemories((prev) => [...prev, data.memory]);
+
+      fetchMemories(currentPage); // Refresh the list after adding a new memory
+      setCurrentPage(1); // Reset to the first page
+      setShowModal(false); // Close the modal after saving
+    } catch (error) {
+      console.log("Error adding memory:", error.message);
+    }
+  };
 
   return (
     <div>
