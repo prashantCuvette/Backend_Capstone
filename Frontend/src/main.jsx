@@ -6,6 +6,9 @@ import App from "./App.jsx";
 import ProtectedRoute from "./pages/ProtectedRoute.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import "./index.css";
+import Admin from "./pages/Admin.jsx";
+import ProtectedRouteAdmin from "./pages/ProtectedRouteAdmin.jsx";
+import Profile from "./pages/Profile.jsx";
 
 createRoot(document.getElementById("root")).render(
   <Router>
@@ -19,6 +22,22 @@ createRoot(document.getElementById("root")).render(
             <ProtectedRoute>
               <App />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRouteAdmin>
+              <Admin />
+            </ProtectedRouteAdmin>
           }
         />
       </Routes>
