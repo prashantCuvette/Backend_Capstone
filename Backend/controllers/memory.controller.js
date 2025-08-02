@@ -56,6 +56,11 @@ export const getMemories = async (req, res) => {
 
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 8;
+        // const searchTerm = req.query.term || "";
+
+        // regex for search
+
+
         // parseInt() vs Number()
 
         const userId = req.user.userId;

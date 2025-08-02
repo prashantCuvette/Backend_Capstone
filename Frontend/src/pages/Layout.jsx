@@ -22,7 +22,7 @@ const Layout = () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:3000/api/memories?page=${page}&limit=${ITEMS_PER_PAGE}&terms=${searchTerm}`,
+        `http://localhost:3000/api/memories?page=${page}&limit=${ITEMS_PER_PAGE}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
