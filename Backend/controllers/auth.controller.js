@@ -26,7 +26,7 @@ export const signup = async (req, res) => {
 
         // upload image to cloudinary
         // console.log(req.file)
-        const profileImage = await uploadImage(req.file.path);
+        const profileImage = await uploadImage(req.file.buffer);
         console.log(profileImage)
 
         // fs.unlinkSync(req.file.path);

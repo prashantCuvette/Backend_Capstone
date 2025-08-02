@@ -14,7 +14,7 @@ export const createMemory = async (req, res) => {
         }
 
         // Upload image to cloud
-        const result = await uploadImage(file.path);
+        const result = await uploadImage(file.buffer);
 
         // console.log(title, description, result.secure_url);
         // console.log(req.user);

@@ -22,7 +22,7 @@ const Layout = () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:3000/api/memories?page=${page}&limit=${ITEMS_PER_PAGE}`,
+        `${API_URL}/api/memories?page=${page}&limit=${ITEMS_PER_PAGE}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -71,7 +71,7 @@ const Layout = () => {
       formData.append("title", newMemory.title);
       formData.append("description", newMemory.description);
 
-      const response = await fetch(`http://localhost:3000/api/memories`, {
+      const response = await fetch(`${API_URL}/api/memories`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
